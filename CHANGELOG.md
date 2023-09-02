@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.5.1](https://github.com/gazorby/enhancd/compare/v2.2.4...v2.5.1) - 2023-09-02
+### Others
+- Updated paths  that were pointing to the old location of the lib directory by @kshenoy in https://github.com/gazorby/enhancd/pull/1
+
 ## [v2.5.1](https://github.com/b4b4r07/enhancd/compare/v2.5.0...v2.5.1) - 2023-04-11
 ### Bug fixes
 - fix fish errors by @peeviddy in https://github.com/b4b4r07/enhancd/pull/204
