@@ -24,7 +24,7 @@ function _enhancd_filter_interactive
         begin
             printf "$line_1\n$line_2\n"
             cat
-        end | $before_cmd | $filter | $after_cmd
+        end | $before_cmd | $filter $ENHANCD_FILTER_OPTS | $after_cmd
         or return 1
     end
 end
