@@ -44,6 +44,15 @@ Features:
 
 <!-- vim-markdown-toc GFM -->
 
+This fork is focused on fish shell only, with various improvements:
+
+- Use universal variable to store directories
+- Allow piping to enhancd
+- Reduce type -q calls by storing awk/filter commands in variables
+- Avoid reading the whole input before piping it to the fuzzy finder so streaming works
+- Fix help message not displayed correctly
+- Fix alt+f shortcut not triggering the filter
+
 * [Getting Started](#getting-started)
 * [Usage](#usage)
   * [Hyphen (`-`)](#hyphen--)
