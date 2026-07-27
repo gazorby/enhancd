@@ -55,15 +55,17 @@ function enhancd
                 set code $status
 
             case --
-                set -a opts "$argv[1]"
-                set -a args (_enhancd_source_history "$argv[2]" | _enhancd_filter_interactive)
-                set code $status
+                # End of options: keep it for `builtin cd` and let the
+                # following operand be handled by its own case, otherwise it
+                # would be consumed here *and* on the next iteration, ending up
+                # twice in $args (fish's implicit cd always passes `--`).
+                set -a opts "$argv[$i]"
 
             case '-*' '--*'
-                if _enhancd_helper_is_default_flag "$argv[1]"
-                    set -a opts "$argv[1]"
+                if _enhancd_helper_is_default_flag "$argv[$i]"
+                    set -a opts "$argv[$i]"
                 else
-                    set -l opt "$argv[1]"
+                    set -l opt "$argv[$i]"
                     set -l func cond format
                     set cond (_enhancd_ltsv_get "$opt" "condition")
                     set func (_enhancd_ltsv_get "$opt" "func")
@@ -95,7 +97,7 @@ function enhancd
                 end
 
             case '*'
-                set -a args (_enhancd_source_history "$argv[1]" | _enhancd_filter_interactive)
+                set -a args (_enhancd_source_history "$argv[$i]" | _enhancd_filter_interactive)
 
         end
         set i (math "$i + 1")
