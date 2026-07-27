@@ -9,6 +9,7 @@ function __enhancd_install --on-event enhancd_install
     set -Ux ENHANCD_ENABLE_SINGLE_DOT true
     set -Ux ENHANCD_ENABLE_HYPHEN true
     set -Ux ENHANCD_ENABLE_HOME true
+    set -Ux ENHANCD_ENABLE_MKDIR true
 
     set -Ux ENHANCD_ARG_DOUBLE_DOT ".."
     set -Ux ENHANCD_ARG_SINGLE_DOT "."
@@ -50,6 +51,7 @@ function __enhancd_uninstall --on-event enhancd_uninstall
     set --erase ENHANCD_ENABLE_SINGLE_DOT
     set --erase ENHANCD_ENABLE_HYPHEN
     set --erase ENHANCD_ENABLE_HOME
+    set --erase ENHANCD_ENABLE_MKDIR
     set --erase ENHANCD_ARG_DOUBLE_DOT
     set --erase ENHANCD_ARG_SINGLE_DOT
     set --erase ENHANCD_ARG_HYPHEN
@@ -73,6 +75,12 @@ end
 
 # bindings
 bind \ef '_enhancd_complete'
+
+# Record directories created via mkdir so they surface at the top of suggestions
+function __enhancd_postexec --on-event fish_postexec
+    set -l st $status
+    _enhancd_track_mkdir $st $argv
+end
 
 set -Ux ENHANCD_CURRENT_FILTER (_enhancd_helper_parse_filter_string "$ENHANCD_FILTER")
 set -Ux ENHANCD_AWK_CMD (_enhancd_command_awk)

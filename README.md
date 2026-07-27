@@ -511,6 +511,13 @@ Enable to use the interactive filter when no argument is given. When set it to `
 </details>
 
 <details>
+<summary><strong><code>ENHANCD_ENABLE_MKDIR</code></strong> (fish only)</summary>
+
+Record a directory created with `mkdir` in the current shell into the history, so it appears at the top of `cd` suggestions without visiting it first. Set it to `false` to disable. Defaults to `true`.
+
+</details>
+
+<details>
 <summary><strong><code>ENHANCD_ARG_DOUBLE_DOT</code></strong></summary>
 
 You can customize the double-dot (`..`) argument for enhancd by this environment variable.
